@@ -37,9 +37,9 @@ fn main() {
 }
 
 fn convert_celsius(value: f64) -> f64 {
-    return (value - 32.0) / 1.8;
+    (value - 32.0) / 1.8
 }
 
 fn convert_fahrenheit(value: f64) -> f64 {
-    return value * 1.8 + 32.0;
+    value * 1.8 + 32.0
 }
