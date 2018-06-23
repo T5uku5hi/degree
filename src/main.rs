@@ -1,34 +1,38 @@
 use std::io;
 
 fn main() {
-    println!("▼▽▼ degree converter ▼▽▼");
+    println!("++++++ Degree Converter ++++++");
     println!("(V)( ㆁᴗㆁ)(V) < Hi, I'm Ferris!");
-    println!("(V)( ㆁᴗㆁ)(V) < Please input temperature value.");
 
-    let mut value = String::new();
-    io::stdin().read_line(&mut value)
-        .expect("(V)( ㆁ-ㆁ)(V) < Failed to read line.");
+    loop {
+        println!("(V)( ㆁᴗㆁ)(V) < Please input temperature value.");
 
-    let _value: f64 = match value.trim().parse() {
-        Ok(value) => value,
-        Err(_) => panic!("(V)( ㆁ-ㆁ)(V) < Please input number.")
-    };
+        let mut value = String::new();
+        io::stdin().read_line(&mut value)
+            .expect("(V)( ㆁ-ㆁ)(V) < Failed to read line.");
 
-    println!("(V)( ㆁᴗㆁ)(V) < Which degree your input value is Fahrenheit or Celsius? (Please Answer F or C.)");
+        let _value: f64 = match value.trim().parse() {
+            Ok(value) => value,
+            Err(_) => continue,
+        };
 
-    let mut degree = String::new();
-    io::stdin().read_line(&mut degree)
-        .expect("(V)( ㆁ-ㆁ)(V) < Failed to read line.");
+        println!("(V)( ㆁᴗㆁ)(V) < Which degree your input value is Fahrenheit or Celsius? (Please Answer F or C.)");
 
-    let _degree: String = match degree.trim().parse() {
-        Ok(degree) => degree,
-        Err(_) => panic!("(V)( ㆁ-ㆁ)(V) < Invalid input.")
-    };
+        let mut degree = String::new();
+        io::stdin().read_line(&mut degree)
+            .expect("(V)( ㆁ-ㆁ)(V) < Failed to read line.");
 
-    match &*_degree {
-        "F" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°F, After: {}°C", _value, convert_celsius(_value)),
-        "C" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°C, After: {}°F", _value, convert_fahrenheit(_value)),
-        _ => println!("V)( ㆁ-ㆁ)(V) < Your degree is invalid. (Please Answer F or C.)")
+        let _degree: String = match degree.trim().parse() {
+            Ok(degree) => degree,
+            Err(_) => continue,
+        };
+
+        match &*_degree {
+            "F" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°F, After: {}°C", _value, convert_celsius(_value)),
+            "C" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°C, After: {}°F", _value, convert_fahrenheit(_value)),
+            _ => println!("V)( ㆁ-ㆁ)(V) < Your degree is invalid. (Please Answer F or C.)")
+        }
+        println!("++++++ Repeat ++++++")
     }
 }
 
