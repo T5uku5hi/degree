@@ -25,16 +25,10 @@ fn main() {
         Err(_) => panic!("(V)( ㆁ-ㆁ)(V) < Invalid input.")
     };
 
-    if _degree == "F".to_string() {
-        println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed!");
-        let celsius_value = convert_celsius(_value);
-        println!("(V)( ㆁᴗㆁ)(V) < Before: {}°F, After: {}°C", _value, celsius_value);
-    } else if _degree == "C".to_string() {
-        println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed!");
-        let fahrenheit_value = convert_fahrenheit(_value);
-        println!("(V)( ㆁᴗㆁ)(V) < Before: {}°C, After: {}°F", _value, fahrenheit_value);
-    } else {
-        println!("V)( ㆁ-ㆁ)(V) < Your degree is invalid. (Please Answer F or C.)");
+    match &*_degree {
+        "F" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°F, After: {}°C", _value, convert_celsius(_value)),
+        "C" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°C, After: {}°F", _value, convert_fahrenheit(_value)),
+        _ => println!("V)( ㆁ-ㆁ)(V) < Your degree is invalid. (Please Answer F or C.)")
     }
 }
 
