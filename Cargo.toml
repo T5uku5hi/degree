@@ -1,0 +1,6 @@
+[package]
+name = "degree"
+version = "0.1.0"
+authors = ["misakimakino"]
+
+[dependencies]
