@@ -27,6 +27,7 @@ fn main() {
             Err(_) => continue,
         };
 
+        // TODO use enum
         match &*_degree {
             "F" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°F, After: {}°C", _value, convert_celsius(_value)),
             "C" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°C, After: {}°F", _value, convert_fahrenheit(_value)),
