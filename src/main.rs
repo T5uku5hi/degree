@@ -1,4 +1,5 @@
 use std::io;
+use std::str::FromStr;
 
 fn main() {
     println!("++++++ Degree Converter ++++++");
@@ -22,18 +23,35 @@ fn main() {
         io::stdin().read_line(&mut degree)
             .expect("(V)( ㆁ-ㆁ)(V) < Failed to read line.");
 
-        let _degree: String = match degree.trim().parse() {
+        let _degree: Degrees = match degree.trim().parse() {
             Ok(degree) => degree,
             Err(_) => continue,
         };
 
-        // TODO use enum
-        match &*_degree {
-            "F" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°F, After: {}°C", _value, convert_celsius(_value)),
-            "C" => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°C, After: {}°F", _value, convert_fahrenheit(_value)),
-            _ => println!("V)( ㆁ-ㆁ)(V) < Your degree is invalid. (Please Answer F or C.)")
+        match _degree {
+            Degrees::F => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°F, After: {}°C", _value, convert_celsius(_value)),
+            Degrees::C => println!("(V)( ㆁᴗㆁ)(V) < Conversion is completed! Before: {}°C, After: {}°F", _value, convert_fahrenheit(_value)),
+            Degrees::Else => println!("V)( ㆁ-ㆁ)(V) < Your degree is invalid. (Please Answer F or C.)")
         }
         println!("++++++ Repeat ++++++")
+    }
+}
+
+enum Degrees {
+    F,
+    C,
+    Else
+}
+
+impl FromStr for Degrees {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Degrees, ()> {
+        match s {
+            "F" => Ok(Degrees::F),
+            "C" => Ok(Degrees::C),
+            _ => Ok(Degrees::Else),
+        }
     }
 }
 
